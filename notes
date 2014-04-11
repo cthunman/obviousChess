@@ -1,0 +1,7 @@
+./stockfish
+uci
+isready
+position startpos moves e2e4 c7c5
+
+need to keep track of move list
+enter move list each time you would like to calculate and explore
