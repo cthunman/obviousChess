@@ -73,7 +73,8 @@ class Board:
 				if from_row > target_row:
 					# first move by pawn
 					if from_row == 6:
-						if from_row - target_row >= 2:
+						if from_row - target_row == 2:
+
 				else:
 					return False
 
