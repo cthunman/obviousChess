@@ -61,22 +61,43 @@ class Board:
 		target_square = move_string[2:4]
 		piece = self.find_square(from_square)
 		
-		from_column = self.column_map[from_square[0]]
-		from_row = self.row_map[int(from_square[1])]
-		target_column = self.column_map[target_square[0]]
-		target_row = self.row_map[int(target_square[1])]
+		# from_column = self.column_map[from_square[0]]
+		# from_row = self.row_map[int(from_square[1])]
+		# target_column = self.column_map[target_square[0]]
+		# target_row = self.row_map[int(target_square[1])]
 
-		if piece == 'p':
-			# pawn is advancing straight
-			if from_column == target_column:
-				# is pawn moving in right direction
-				if from_row > target_row:
-					# first move by pawn
-					if from_row == 6:
-						if from_row - target_row == 2:
+		if piece == 'p' or piece == 'P':
+			return check_pawn_move(from_square, target_square, piece)
 
-				else:
-					return False
+
+	def check_pawn_move(self, from_square, target_square, piece):
+		# pawn is advancing straight
+		if abs(from_column - target_column) > 1:
+			return False
+		if abs(from_row - target_row) > 2:
+			return False
+
+		if from_column == target_column:
+			# is pawn moving in right direction
+			if piece == 'p':
+			if from_row > target_row:
+				# first move by pawn
+				if from_row == 6:
+					if from_row - target_row == 2:
+			else:
+				return False
+		return True
+
+	def check_bishop_move(self, from_square, target_square):
+		return True
+	def check_knight_move(self, from_square, target_square):
+		return True
+	def check_rook_move(self, from_square, target_square):
+		return True
+	def check_queen_move(self, from_square, target_square):
+		return True
+	def check_king_move(self, from_square, target_square):
+		return True
 
 
 	def find_square(self, square, replacement = None):
