@@ -67,26 +67,34 @@ class Board:
 		# target_row = self.row_map[int(target_square[1])]
 
 		if piece == 'p' or piece == 'P':
-			return check_pawn_move(from_square, target_square, piece)
+			return self.check_pawn_move(from_square, target_square, piece)
 
 
 	def check_pawn_move(self, from_square, target_square, piece):
+		from_column = self.column_map[from_square[0]]
+		from_row = self.row_map[int(from_square[1])]
+		target_column = self.column_map[target_square[0]]
+		target_row = self.row_map[int(target_square[1])]
+
 		# pawn is advancing straight
 		if abs(from_column - target_column) > 1:
 			return False
+		# pawns never move more than 2 spaces
 		if abs(from_row - target_row) > 2:
 			return False
 
 		if from_column == target_column:
 			# is pawn moving in right direction
 			if piece == 'p':
-			if from_row > target_row:
-				# first move by pawn
-				if from_row == 6:
-					if from_row - target_row == 2:
-			else:
-				return False
-		return True
+				if from_row > target_row:
+					# first move by pawn
+					if from_row == 6:
+						if from_row - target_row == 2 or from_row - target_row == 1:
+							print 'I guess?'
+							return True
+				else:
+					return False
+		return False
 
 	def check_bishop_move(self, from_square, target_square):
 		return True
