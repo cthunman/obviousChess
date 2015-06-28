@@ -2,7 +2,7 @@ from Chess import Board
 
 board = Board()
 
-board.initialize_board('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
+board.initialize_board('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
 
 # if board.is_move_legal('e2e4'):
 # 	board.move_piece('e2e4')

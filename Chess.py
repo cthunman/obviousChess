@@ -39,7 +39,8 @@ class Board:
 		self.board.append([0, 0, 0, 0, 0, 0, 0, 0,])
 
 	def initialize_board(self, fen_string):
-		rows = string.split(fen_string, '/')
+		position_info = string.split(fen_string, ' ')
+		rows = string.split(position_info[0], '/')
 		for row_index, row in enumerate(rows):
 			# print row
 			index = 0
