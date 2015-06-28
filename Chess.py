@@ -83,15 +83,15 @@ class Board:
 		if piece == 'p' or piece == 'P':
 			return self.check_pawn_move(from_square, target_square, piece)
 		if piece == 'n' or piece == 'N':
-			return self.check_knight_move(from_square, target_square)
+			return self.check_knight_move(from_square, target_square, piece)
 		if piece == 'b' or piece == 'B':
-			return self.check_bishop_move(from_square, target_square)
+			return self.check_bishop_move(from_square, target_square, piece)
 		if piece == 'r' or piece == 'R':
-			return self.check_rook_move(from_square, target_square)
+			return self.check_rook_move(from_square, target_square, piece)
 		if piece == 'q' or piece == 'Q':
-			return self.check_queen_move(from_square, target_square)
+			return self.check_queen_move(from_square, target_square, piece)
 		if piece == 'k' or piece == 'K':
-			return self.check_king_move(from_square, target_square)
+			return self.check_king_move(from_square, target_square, piece)
 
 	def check_pawn_move(self, from_square, target_square, piece):
 		from_column = self.column_map[from_square[0]]
@@ -132,7 +132,7 @@ class Board:
 					return False
 		return False
 
-	def check_bishop_move(self, from_square, target_square):
+	def check_bishop_move(self, from_square, target_square, piece):
 		from_column = self.column_map[from_square[0]]
 		from_row = self.row_map[int(from_square[1])]
 		target_column = self.column_map[target_square[0]]
@@ -143,7 +143,7 @@ class Board:
 		else:
 			return False
 
-	def check_knight_move(self, from_square, target_square):
+	def check_knight_move(self, from_square, target_square, piece):
 		from_column = self.column_map[from_square[0]]
 		from_row = self.row_map[int(from_square[1])]
 		target_column = self.column_map[target_square[0]]
@@ -163,7 +163,7 @@ class Board:
 			return False
 
 		return True
-	def check_rook_move(self, from_square, target_square):
+	def check_rook_move(self, from_square, target_square, piece):
 		from_column = self.column_map[from_square[0]]
 		from_row = self.row_map[int(from_square[1])]
 		target_column = self.column_map[target_square[0]]
@@ -180,11 +180,11 @@ class Board:
 			else:
 				return True
 
-	def check_queen_move(self, from_square, target_square):
+	def check_queen_move(self, from_square, target_square, piece):
 		return (self.check_bishop_move(from_square, target_square) or 
 						self.check_rook_move(from_square, target_square))
 
-	def check_king_move(self, from_square, target_square):
+	def check_king_move(self, from_square, target_square, piece):
 		from_column = self.column_map[from_square[0]]
 		from_row = self.row_map[int(from_square[1])]
 		target_column = self.column_map[target_square[0]]
@@ -193,6 +193,8 @@ class Board:
 		return (abs(from_column - target_column) < 2 and 
 				abs(from_row - target_row) < 2)
 
+	def is_move_obstructed(self, from_square, target_square, piece):
+		return False
 
 	def find_square(self, square, replacement = None):
 		column = self.column_map[square[0]]
